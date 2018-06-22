@@ -1,3 +1,1 @@
-# nu.indecision-app
-indecision app
--------------
+Expensify App
