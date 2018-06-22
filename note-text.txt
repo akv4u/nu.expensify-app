@@ -1,0 +1,19 @@
+npm -g install live-server
+npm -g install babel-cli
+yarn add babel-preset-react babel-preset-env
+babel src/app.js --out-file=public/scripts/app.js --presets=react,env
+Note above
+babel src/app.js --out-file=public/scripts/app.js --presets=react --watch
+babel playground/build-it-visible.js  --out-file=public/scripts/app-out.js --presets=react --watch
+babel playground/counter-example.js  --out-file=public/scripts/app-out.js --presets=react --watch
+
+babel playground/counter-example.js  --out-file=public/scripts/app-out.js --presets=react --watch
+
+
+localStorage is string based key-valye pair storage in browser and it persists browser
+refresh
+
+// webpack
+1. remove babel-cli and live-server from global installation
+
+// partials starts with _<file>.scss
