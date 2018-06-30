@@ -1,22 +1,18 @@
 import { createStore } from 'redux'
 
+// Reducer functions
+// 1. Reducers are pure functions
+// 2. Neve change state or action
 
-// Action generators - functions that return action objects
-
-const incrementCount = () => ({type: 'INCREMENT'})
-
-const store = createStore ((state = {count: 0}, action) => {
- 
+const countReducer = (state = {count: 0}, action) => { 
   switch (action.type) {
     case  'INCREMENT':
-      const increatementBy = typeof action.increatementBy === 'number'? action.increatementBy : 1;
       return {
-        count: state.count + increatementBy
+        count: state.count + action.increatementBy
       }
     case 'DECREMENT':
-      const decrementBy = typeof action.decrementBy === 'number'? action.decrementBy : 1;
       return {
-        count: state.count - decrementBy
+        count: state.count - action.decrementBy
       };
     case 'SET':
       return {
@@ -29,36 +25,41 @@ const store = createStore ((state = {count: 0}, action) => {
     default: 
        return state;
   }
-})
+}
+
+const store = createStore (countReducer);
 
 store.subscribe(() => {
   console.log (store.getState())
 });
 
-store.dispatch({
+
+// Action generators - functions that return action objects
+const incrementCount = ({increatementBy = 1} = {}) => ({
   type: 'INCREMENT',
-  increatementBy: 5
+  increatementBy
 });
 
-store.dispatch({
-  type: 'DECREMENT'
-});
+const decrementCount = ({decrementBy = 1} = {}) => ({
+  type: 'DECREMENT',
+  decrementBy
+})
 
-store.dispatch({
-  type: 'DECREMENT'
-})
-store.dispatch({
-  type: 'DECREMENT'
-})
-store.dispatch({
-  type: 'DECREMENT'
-})
-store.dispatch({
-  type: 'RESET',
-  decrementBy: 10
-});
-
-store.dispatch({
+const setCount = ({count = 1} = {}) => ({
   type: 'SET',
-  count: 101
-});
+  count
+})
+
+const resetCount = () => ({
+  type: 'RESET'
+})
+
+store.dispatch (incrementCount())
+store.dispatch (incrementCount ({increatementBy: 5}));
+store.dispatch (incrementCount ({increatementBy: 15}));
+
+store.dispatch (decrementCount ({decrementBy: 10}));
+
+store.dispatch (setCount ({count: 100}))
+
+store.dispatch (resetCount())

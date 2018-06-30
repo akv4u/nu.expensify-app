@@ -1,3 +1,5 @@
 Redex is state container. (which is what our class based component is)
 
 
+const add = ({a, b}, c) => a + b + c;
+console.log (add ({a:1, b:2}, 100));

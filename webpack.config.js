@@ -3,7 +3,9 @@ const path = require('path')
 module.exports = {
     mode: 'development',
  //   entry :'./src/app.js',
-    entry :'./playground/redux-101.js',
+    // entry :'./playground/redux-101.js',
+    entry :'./playground/redux-expensify.js',
+
     // entry :'./playground/destructring.js',
 
     output: {
